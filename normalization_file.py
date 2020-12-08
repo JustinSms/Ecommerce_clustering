@@ -8,7 +8,6 @@ data_num = data[["Avg. Session Length","Time on App","Time on Website","Length o
 data_cat = data[["Email","Address"]]
 
 # Normalization session length
-
 class Normalization:
 
     def __init__(self, min_v, max_v, series):
