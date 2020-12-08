@@ -29,8 +29,7 @@ kmeans.fit(data_num_norm)
 # Scaling the data to normalize
 model = KMeans(n_clusters=5).fit(data_num_norm)
 
-# Visualize it:
-plt.figure(figsize=(8, 6))
-plt.scatter(data_num_norm[:,0], data_num_norm[:,1], c=model.labels_.astype(float))
+print(kmeans.predict(data_num_norm))
+
 
 
