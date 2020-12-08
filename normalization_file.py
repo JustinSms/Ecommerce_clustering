@@ -18,7 +18,7 @@ class Normalization:
 
     def normalizator(self):
         for value in self.series:
-            norm_value = (value - self.min_v)/(self.max_v - self.min_v)
+            norm_value = ((value - self.min_v)/(self.max_v - self.min_v))
 
             self.list.append(norm_value)
         
