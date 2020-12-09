@@ -21,8 +21,8 @@ print(data_num_norm.head(5))
 
 # data_num_norm is a dataframe -> we need np.ndarray
 # .values transforms df into np.array (if neccessary specify needed columns with .iloc[])
-x = data_num_norm.values
-#print(x.shape)
+x = data_num_norm.iloc[:,[2,4]].values
+print(x.shape)
 
 
 # Elbow method
@@ -43,20 +43,21 @@ plt.show()
 
 # setting up KMeans algorithm 
 # init = method for initialization ("k-means++" -> smart choosing of centroids(default), could also be "random",... )
-km = KMeans(n_clusters=5, init="k-means++", max_iter=300, n_init=10, random_state=0)
+km = KMeans(n_clusters=6, init="k-means++", max_iter=300, n_init=10, random_state=0)
 y_means = km.fit_predict(x)
 
 
 # visualizing KMeans
 
-plt.scatter(x[y_means == 0, 0], x[y_means == 0, 4], s = 100, c = 'pink')
-plt.scatter(x[y_means == 1, 0], x[y_means == 1, 4], s = 100, c = "yellow")
-plt.scatter(x[y_means == 2, 0], x[y_means == 2, 4], s = 100, c = 'cyan')
-plt.scatter(x[y_means == 3, 0], x[y_means == 3, 4], s = 100, c = 'magenta')
-plt.scatter(x[y_means == 4, 0], x[y_means == 4, 4], s = 100, c = 'orange')
+plt.scatter(x[y_means == 0, 0], x[y_means == 0, 1], s = 100, c = 'pink')
+plt.scatter(x[y_means == 1, 0], x[y_means == 1, 1], s = 100, c = "yellow")
+plt.scatter(x[y_means == 2, 0], x[y_means == 2, 1], s = 100, c = 'cyan')
+plt.scatter(x[y_means == 3, 0], x[y_means == 3, 1], s = 100, c = 'magenta')
+plt.scatter(x[y_means == 4, 0], x[y_means == 4, 1], s = 100, c = 'orange')
+plt.scatter(x[y_means == 5, 0], x[y_means == 5, 1], s = 100, c = 'blue')
 
-plt.scatter(km.cluster_centers_[:,0], km.cluster_centers_[:, 4], s = 50, c = 'green' , label = 'centeroid')
-plt.xlabel("Avg. Session Length")
+plt.scatter(km.cluster_centers_[:,0], km.cluster_centers_[:, 1], s = 50, c = 'green' , label = 'centeroid')
+plt.xlabel("Time on Website")
 plt.ylabel("Yearly Amount Spent")
 plt.show()
 
