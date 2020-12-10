@@ -26,10 +26,10 @@ counter=['single', 'complete', 'average'] #list for distance methods
 #3using the denrogram to find optimal number of clusters 
 
 
-for i in counter: #order: single, complete, average 
+"""for i in counter: #order: single, complete, average 
     dendrogram = sch.dendrogram(sch.linkage(x, method=i))
     plt.title(i)
-    plt.show()
+    plt.show()"""
 
 
 
