@@ -19,17 +19,17 @@ data_cat = data[["Email","Address"]]
 data_num_norm = normalization_file.data_num_norm_normfile
 
 
-x= data_num_norm.iloc[:,[3,4]].values
+"""x= data_num_norm.iloc[:,[3,4]].values
 
 counter=['single', 'complete', 'average'] #list for distance methods
 
 #3using the denrogram to find optimal number of clusters 
 
 
-"""for i in counter: #order: single, complete, average 
+for i in counter: #order: single, complete, average 
     dendrogram = sch.dendrogram(sch.linkage(x, method=i))
     plt.title(i)
-    plt.show()"""
+    plt.show()
 
 
 
@@ -51,4 +51,15 @@ plt.title("HC Clustering")
 plt.xlabel("Length of Membership")
 plt.ylabel("Yearly Amount Spent")
 
-plt.show()
+plt.show()"""
+
+
+for i in data:
+    num = data._get_numeric_data().columns
+    #df = pd.DataFrame(num)
+    #list(num)
+
+print(list(num))
+#print(type(num))
+
+

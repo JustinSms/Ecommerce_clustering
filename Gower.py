@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from sklearn.neighbors import DistanceMetric
 
 # nominal:
 #   1 = one feature is true and the other feature is not
@@ -17,15 +18,29 @@ import pandas as pd
 
 
 
-
-
 class Gower_distance:
 
-    def __init__(self):
-        pass
+    def __init__(self, dataframe):
+        self.dataframe = dataframe
+        self.num_list = []
+        self.cat_list = []
+
 
     def gower_calculation(self):
-        pass
+        
+        for a in self.dataframe:
+            num_data = self.dataframe._get_numeric_data().columns
+            self.num_list = list(num_data)
+
+        for b in self.dataframe:
+            if b in self.num_list:
+                pass
+            else:
+                self.cat_list.append(b)
+
+        
+
+             
 
 
 
