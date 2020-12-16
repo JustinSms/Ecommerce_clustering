@@ -4,6 +4,7 @@ import normalization_file
 from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
 from sklearn.decomposition import PCA
+import pandas_analysis
 
 
 data = pd.read_csv("Ecommerce Customers.csv")
@@ -60,6 +61,11 @@ plt.scatter(km.cluster_centers_[:,0], km.cluster_centers_[:, 1], s = 50, c = 'gr
 plt.xlabel("Time on Website")
 plt.ylabel("Yearly Amount Spent")
 plt.show()
+
+
+
+a = pandas_analysis.email_new
+print(a.head(5))
 
 
 
