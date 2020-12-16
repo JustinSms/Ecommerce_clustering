@@ -21,7 +21,7 @@ import pandas as pd
 
 class Gower_distance:
 
-    def __init__():
+    def __init__(self):
         pass
 
     def gower_calculation(self):
