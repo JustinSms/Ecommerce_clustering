@@ -20,15 +20,26 @@ data_num_norm = normalization_file.data_num_norm_normfile
 
 #print(type(data_num))
 
-a = [[1,2,3,4,5,6],[7,8,9,10,11,12]]
-b = pd.DataFrame(a)
+a = np.array([1,2,3,4,5,6])
+b = np.array([10,11,12,13,14,15])
+d = np.array([2,4,6,8,10,12])
 
-print(type(b),"type b")
+list_alph = [np.array([1,2,3,4,5,6]),np.array([10,11,12,13,14,15]),np.array([2,4,6,8,10,12])]
+list_weight = [1,2,1]
 
 
-c = b.to_numpy()
+c = [a*b for a,b in zip(list_alph,list_weight)]
+print(type(c))
+print(sum(c))
 
-print(c,"c")
+
+
+
+
+
+
+#print(type(a))
+
 
 
 
@@ -72,7 +83,7 @@ for i in data:
     #df = pd.DataFrame(num)
     #list(num)
 
-print(list(num))
+#print(list(num))
 #print(type(num))
 
 

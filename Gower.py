@@ -59,13 +59,13 @@ class Gower:
     
                 numpy_array_norm = (numpy_array - 0.5)/M
 
-                dist_ordinal = DistanceMetric.get_metric("manhattan").pairwise(numpy_array_norm)
+                dist_ordinal = DistanceMetric.get_metric("euclidean").pairwise(numpy_array_norm)
 
                 self.distance_list.append(dist_ordinal)
                 
             if i == "metric":
 
-                dist_metric = DistanceMetric.get_metric("manhattan").pairwise(self.data[[self.variable_name_list[self.counter]]])
+                dist_metric = DistanceMetric.get_metric("euclidean").pairwise(self.data[[self.variable_name_list[self.counter]]])
 
                 dist_metric = dist_metric/max(np.ptp(self.data[self.variable_name_list[self.counter]]),1)
 
@@ -73,19 +73,50 @@ class Gower:
                 #print(self.variable_name_list[self.counter])
                 self.counter += 1
 
-        print(self.distance_list)
+        #print(self.distance_list)
 
 
     def matrix_calculator(self):
-        pass
+
+        gower_top_equasion = [a*b for a,b in zip(self.distance_list,self.weight_list)]
+        gower_top_equasion = sum(gower_top_equasion)
+
+        gower = gower_top_equasion/ sum(self.weight_list)
+
+        print(gower)
+
 
 
 a = Gower(data_num, ["metric","metric","metric","metric","metric","ordinal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"])
 a.distance_calculator()
+a.matrix_calculator()
 
+
+print("space")
+print("space")
+print("space")
+print("space")
         
+print(gower.gower_matrix(data_num))
+
+
+
+
+
+
+
 
        
+"""a = np.array([1,2,3,4,5,6])
+b = np.array([10,11,12,13,14,15])
+d = np.array([2,4,6,8,10,12])
 
+list_alph = [np.array([1,2,3,4,5,6]),np.array([10,11,12,13,14,15]),np.array([2,4,6,8,10,12])]
+list_weight = [1,2,1]
+
+
+c = [a*b for a,b in zip(list_alph,list_weight)]
+print(type(c))
+print(sum(c))"""
 
 
