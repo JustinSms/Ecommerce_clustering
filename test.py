@@ -18,6 +18,19 @@ data_num = data[["Avg. Session Length","Time on App","Time on Website","Length o
 data_cat = data[["Email","Address"]]
 data_num_norm = normalization_file.data_num_norm_normfile
 
+#print(type(data_num))
+
+a = [[1,2,3,4,5,6],[7,8,9,10,11,12]]
+b = pd.DataFrame(a)
+
+print(type(b),"type b")
+
+
+c = b.to_numpy()
+
+print(c,"c")
+
+
 
 """x= data_num_norm.iloc[:,[3,4]].values
 
