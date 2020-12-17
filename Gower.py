@@ -59,13 +59,13 @@ class Gower:
     
                 numpy_array_norm = (numpy_array - 0.5)/M
 
-                dist_ordinal = DistanceMetric.get_metric("euclidean").pairwise(numpy_array_norm)
+                dist_ordinal = DistanceMetric.get_metric("manhattan").pairwise(numpy_array_norm)
 
                 self.distance_list.append(dist_ordinal)
                 
             if i == "metric":
 
-                dist_metric = DistanceMetric.get_metric("euclidean").pairwise(self.data[[self.variable_name_list[self.counter]]])
+                dist_metric = DistanceMetric.get_metric("manhattan").pairwise(self.data[[self.variable_name_list[self.counter]]])
 
                 dist_metric = dist_metric/max(np.ptp(self.data[self.variable_name_list[self.counter]]),1)
 
