@@ -45,6 +45,7 @@ class Gower:
 
     def distance_calculator(self):
         for i in self.type_list:
+
             if i == "nominal":
 
                 column_counter = self.data[self.variable_name_list[self.counter]]
@@ -54,7 +55,8 @@ class Gower:
 
                 dist_nominal = DistanceMetric.get_metric("dice").pairwise(dummies)   
 
-                self.distance_list.append(dist_nominal)          
+                self.distance_list.append(dist_nominal)    
+    
        
             if i == "ordinal":
                 
@@ -77,11 +79,13 @@ class Gower:
             if i == "metric":
 
                 column_counter = self.data[[self.variable_name_list[self.counter]]]
-                self.counter += 1
+                
 
                 dist_metric = DistanceMetric.get_metric("manhattan").pairwise(column_counter)
 
                 dist_metric = dist_metric/max(np.ptp(self.data[self.variable_name_list[self.counter]]),1)
+
+                self.counter += 1
 
                 self.distance_list.append(dist_metric)
 
@@ -91,7 +95,7 @@ class Gower:
         #gower_top_equasion = [a*b for a,b in zip(self.distance_list,self.weight_list)]
         #gower_top_equasion = sum(gower_top_equasion)
 
-        gower_calc = sum(self.distance_list)/ sum(self.weight_list)
+        gower_calc = sum(self.distance_list) / sum(self.weight_list)
 
         print(gower_calc)
 
@@ -103,10 +107,7 @@ a.distance_calculator()
 a.matrix_calculator()
 
 
-print("space")
-print("space")
-print("space")
-print("space")
+
         
 #print(gower.gower_matrix(data_new))
 
