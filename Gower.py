@@ -4,6 +4,10 @@ from sklearn.neighbors import DistanceMetric
 import pandas_analysis
 import gower
 
+import sys
+import numpy
+#numpy.set_printoptions(threshold=sys.maxsize)
+
 data = pd.read_csv("Ecommerce Customers.csv")
 #print(data.head(15))
 
@@ -28,8 +32,6 @@ data_new = data_num
 #   (i - 0.5)/ M   (M --> total number of features of m e.g. different lengths to highway from house 1,2,3,4,5 -> M = 5)
 #   after being scaled ordinal variables will be measured like metric variables
 
-s1 = DistanceMetric.get_metric("manhattan").pairwise(data_num[["Avg. Session Length"]])
-#print(s1)
 
 class Gower:
 
@@ -44,11 +46,19 @@ class Gower:
     def distance_calculator(self):
         for i in self.type_list:
             if i == "nominal":
-                pass
+
+                column_counter = self.data[self.variable_name_list[self.counter]]
+                self.counter +=1
+
+                dummies = pd.get_dummies(column_counter)
+
+                dist_nominal = DistanceMetric.get_metric("dice").pairwise(dummies)   
+
+                self.distance_list.append(dist_nominal)          
+       
             if i == "ordinal":
                 
                 df = self.data[[self.variable_name_list[self.counter]]]
-
                 self.counter +=1
                 
                 numpy_array = df.to_numpy()
@@ -63,31 +73,32 @@ class Gower:
 
                 self.distance_list.append(dist_ordinal)
                 
+                
             if i == "metric":
 
-                dist_metric = DistanceMetric.get_metric("manhattan").pairwise(self.data[[self.variable_name_list[self.counter]]])
+                column_counter = self.data[[self.variable_name_list[self.counter]]]
+                self.counter += 1
+
+                dist_metric = DistanceMetric.get_metric("manhattan").pairwise(column_counter)
 
                 dist_metric = dist_metric/max(np.ptp(self.data[self.variable_name_list[self.counter]]),1)
 
                 self.distance_list.append(dist_metric)
-                #print(self.variable_name_list[self.counter])
-                self.counter += 1
-
-        #print(self.distance_list)
 
 
     def matrix_calculator(self):
 
-        gower_top_equasion = [a*b for a,b in zip(self.distance_list,self.weight_list)]
-        gower_top_equasion = sum(gower_top_equasion)
+        #gower_top_equasion = [a*b for a,b in zip(self.distance_list,self.weight_list)]
+        #gower_top_equasion = sum(gower_top_equasion)
 
-        gower = gower_top_equasion/ sum(self.weight_list)
+        gower_calc = sum(self.distance_list)/ sum(self.weight_list)
 
-        print(gower)
+        print(gower_calc)
 
 
 
-a = Gower(data_num, ["metric","metric","metric","metric","metric","ordinal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"])
+#a = Gower(data_num, ["metric","metric","metric","metric","metric"], [1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent"])
+a = Gower(data_new, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"])
 a.distance_calculator()
 a.matrix_calculator()
 
@@ -97,7 +108,7 @@ print("space")
 print("space")
 print("space")
         
-print(gower.gower_matrix(data_num))
+#print(gower.gower_matrix(data_new))
 
 
 

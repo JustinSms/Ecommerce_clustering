@@ -7,6 +7,11 @@ from sklearn.datasets import make_blobs
 import scipy.cluster.hierarchy as sch
 from sklearn.cluster import AgglomerativeClustering
 import normalization_file
+from sklearn.neighbors import DistanceMetric
+import pandas_analysis
+import sys
+import numpy
+numpy.set_printoptions(threshold=sys.maxsize)
 
 #2import dataset and specification
 
@@ -20,7 +25,58 @@ data_num_norm = normalization_file.data_num_norm_normfile
 
 #print(type(data_num))
 
-a = np.array([1,2,3,4,5,6])
+"""data_email = pandas_analysis.email_new
+#data_email = pd.DataFrame(pandas_analysis.email_new)
+print(type(data_email))
+print(data_email.head(5))
+
+dummy_df = pd.get_dummies(data_email)
+
+print(dummy_df)
+
+
+#s3 = DistanceMetric.get_metric('dice').pairwise(data_email)
+#print(s3)"""
+
+
+data_test = pd.Series([1,2,3,4,4])
+# data_test = pandas_analysis.email_new
+
+print(data_test)
+
+dummy_test = pd.get_dummies(data_test)
+
+print(dummy_test)
+
+s4 = DistanceMetric.get_metric('dice').pairwise(dummy_test)
+print(type(s4))
+print(s4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+""" a = np.array([1,2,3,4,5,6])
 b = np.array([10,11,12,13,14,15])
 d = np.array([2,4,6,8,10,12])
 
@@ -31,7 +87,7 @@ list_weight = [1,2,1]
 c = [a*b for a,b in zip(list_alph,list_weight)]
 print(type(c))
 print(sum(c))
-
+ """
 
 
 
