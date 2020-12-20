@@ -46,4 +46,4 @@ for i in email_tail_list:
 
 email_new = pd.Series(tail_cat_list)
 
-#email_new.head(5)
+print(email_new.head(15))

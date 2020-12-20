@@ -18,6 +18,10 @@ data_num["Email"] = data_cat
 
 data_new = data_num
 
+data_email_string = data[["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"]]
+print(data_email_string.head(5))
+#print(data_new.head(5))
+
 #print(data_new.head(5))
 
 # nominal:
@@ -60,18 +64,18 @@ class Gower:
        
             if i == "ordinal":
                 
-                df = self.data[[self.variable_name_list[self.counter]]]
+                dataframe = self.data[[self.variable_name_list[self.counter]]]
                 self.counter +=1
                 
-                numpy_array = df.to_numpy()
+                numpy_array = dataframe.to_numpy()
 
                 unique_list = np.unique(numpy_array)
 
                 M = np.count_nonzero(unique_list)
     
-                numpy_array_norm = (numpy_array - 0.5)/M
+                numpy_array_normalized = (numpy_array - 0.5)/M
 
-                dist_ordinal = DistanceMetric.get_metric("manhattan").pairwise(numpy_array_norm)
+                dist_ordinal = DistanceMetric.get_metric("manhattan").pairwise(numpy_array_normalized)
 
                 self.distance_list.append(dist_ordinal)
                 
@@ -80,7 +84,6 @@ class Gower:
 
                 column_counter = self.data[[self.variable_name_list[self.counter]]]
                 
-
                 dist_metric = DistanceMetric.get_metric("manhattan").pairwise(column_counter)
 
                 dist_metric = dist_metric/max(np.ptp(self.data[self.variable_name_list[self.counter]]),1)
@@ -97,19 +100,22 @@ class Gower:
 
         gower_calc = sum(self.distance_list) / sum(self.weight_list)
 
-        print(gower_calc)
+        print(gower_calc,"gower own")
 
 
-
-#a = Gower(data_num, ["metric","metric","metric","metric","metric"], [1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent"])
-a = Gower(data_new, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"])
+a = Gower(data_email_string, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"])
 a.distance_calculator()
 a.matrix_calculator()
+
+print("space")
+
+        
+print(gower.gower_matrix(data_email_string),"Gower module")
 
 
 
         
-#print(gower.gower_matrix(data_new))
+
 
 
 
