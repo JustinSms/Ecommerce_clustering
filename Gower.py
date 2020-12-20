@@ -107,14 +107,14 @@ a = Gower(data_email_string, ["metric","metric","metric","metric","metric","nomi
 a.distance_calculator()
 a.matrix_calculator()
 
-print("space")
+
+
+
+
+
+
 
         
-print(gower.gower_matrix(data_email_string),"Gower module")
-
-
-
-        
 
 
 
@@ -124,17 +124,6 @@ print(gower.gower_matrix(data_email_string),"Gower module")
 
 
 
-       
-"""a = np.array([1,2,3,4,5,6])
-b = np.array([10,11,12,13,14,15])
-d = np.array([2,4,6,8,10,12])
 
-list_alph = [np.array([1,2,3,4,5,6]),np.array([10,11,12,13,14,15]),np.array([2,4,6,8,10,12])]
-list_weight = [1,2,1]
-
-
-c = [a*b for a,b in zip(list_alph,list_weight)]
-print(type(c))
-print(sum(c))"""
 
 
