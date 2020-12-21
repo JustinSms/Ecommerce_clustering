@@ -13,10 +13,6 @@ data_cat = data[["Email","Address","Avatar"]]
 #data_num.describe()
 
 
-
-#data_num.corr(method = "pearson")
-
-
 ### EMAIL ANALYSIS
 
 email_tail_list = []
@@ -48,30 +44,33 @@ email_new = pd.Series(tail_cat_list)
 
 #print(email_new.head(15))
 
+
 ## ADDRESS ANALYSIS
 
 list_shortcut_states = ["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",]
 state_list = []
 somewhere_fucking_else = []
-data_address = data["Address"]
-#print(type(data_address))
-#print(data_address.head(20))
 
-for i in data_address:
+
+for i in data["Address"]:
     if "Box" in i:
-        somewhere_fucking_else.append(i)
+        index_to_drop = data[data["Address"] == i].index.values 
+        data.drop(index_to_drop, inplace = True)
     else:
         state = i.split(",")[-1].split()[0]
 
         if state in list_shortcut_states:
             state_list.append(state)
         else:
-            somewhere_fucking_else.append(i)
-
-address_states_only = pd.Series(state_list)
-#print(address_states_only.head(20))
-print(address_states_only.describe())
+            index_to_drop = data[data["Address"] == i].index.values 
+            data.drop(index_to_drop, inplace = True)
 
 
+data.drop(["Email","Avatar","Address"], inplace = True, axis = 1)
+data.insert(5, "State", state_list)
 
+data_real = data
+data_real.index = range(len(data_real.index))
+
+print(data_real.head(20))
 
