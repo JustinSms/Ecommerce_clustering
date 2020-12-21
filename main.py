@@ -64,12 +64,7 @@ plt.show()
 
 
 
-a = pandas_analysis.email_new
-print(a.head(5))
 
-
-b = pandas_analysis.address_states_only
-print(b)
 
 
 
