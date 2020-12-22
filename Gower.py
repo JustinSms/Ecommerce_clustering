@@ -2,27 +2,8 @@ import numpy as np
 import pandas as pd
 from sklearn.neighbors import DistanceMetric
 import pandas_analysis
-import gower
 
-import sys
-import numpy
-#numpy.set_printoptions(threshold=sys.maxsize)
-
-data = pd.read_csv("Ecommerce Customers.csv")
-#print(data.head(15))
-
-data_num = data[["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent"]]
-data_cat = pandas_analysis.email_new
-
-data_num["Email"] = data_cat
-
-data_new = data_num
-
-data_email_string = data[["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"]]
-print(data_email_string.head(5))
-#print(data_new.head(5))
-
-#print(data_new.head(5))
+data_real = pandas_analysis.data_real
 
 # nominal:
 #   1 = one feature is true and the other feature is not
@@ -103,27 +84,6 @@ class Gower:
         print(gower_calc,"gower own")
 
 
-a = Gower(data_email_string, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","Email"])
+a = Gower(data_real, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","State"])
 a.distance_calculator()
 a.matrix_calculator()
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
