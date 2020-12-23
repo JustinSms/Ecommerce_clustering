@@ -4,4 +4,5 @@ Validation information - short overview
 beacasue counting the errors is not possible (the true data is missing) 
 - there is no right or wrong wihtin clustering - its more about the meaningfulness of a certain algorithim - expert knowledge needded 
 -internal and external indexing possible 
+- in general it s is more about interpreting and argueuing 
 
