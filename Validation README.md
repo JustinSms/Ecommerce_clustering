@@ -12,4 +12,5 @@ A.External
 
 B. Internal (Ground truth is unknown )
 1. Silhouette Coefficient
-....
+2. Calinski-Harabasz Index (variance ratio criterion)
+3. Davies-Bouldin Index
