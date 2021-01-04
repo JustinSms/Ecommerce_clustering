@@ -8,7 +8,7 @@ because counting the errors is not possible (the true data is missing)
 
 A.External 
 1. Expert's opinion
-2. External measures (ground truth is known )
+2. External measures (ground truth is known- no scientific interest )
 
 B. Internal (Ground truth is unknown )
 1. Silhouette Coefficient

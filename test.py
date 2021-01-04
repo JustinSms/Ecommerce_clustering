@@ -39,3 +39,5 @@ height_series.name = "height"
 df.insert(2, "Height", height)
 
 print(df)
+
+
