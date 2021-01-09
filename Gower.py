@@ -4,6 +4,7 @@ from sklearn.neighbors import DistanceMetric
 import pandas_analysis
 
 data_real = pandas_analysis.data_real
+#print(data_real.head(5))
 
 # nominal:
 #   1 = one feature is true and the other feature is not
@@ -73,6 +74,8 @@ class Gower:
 
                 self.distance_list.append(dist_metric)
 
+        return self.distance_list
+
 
     def matrix_calculator(self):
 
@@ -81,9 +84,13 @@ class Gower:
 
         gower_calc = sum(self.distance_list) / sum(self.weight_list)
 
-        print(gower_calc,"gower own")
+        #print(gower_calc,"gower own")
+        return gower_calc
 
 
-a = Gower(data_real, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","State"])
-a.distance_calculator()
-a.matrix_calculator()
+gower_instance = Gower(data_real, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","State"])
+
+distance_gower = gower_instance.distance_calculator()
+
+data_matrix_gower = gower_instance.matrix_calculator()
+

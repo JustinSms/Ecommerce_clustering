@@ -11,7 +11,8 @@ from sklearn.neighbors import DistanceMetric
 import pandas_analysis
 import sys
 import numpy
-numpy.set_printoptions(threshold=sys.maxsize)
+import Gower
+#numpy.set_printoptions(threshold=sys.maxsize)
 
 #2import dataset and specification
 
@@ -38,6 +39,7 @@ height_series.name = "height"
 
 df.insert(2, "Height", height)
 
-print(df)
+#print(df)
 
-
+a = Gower.data_matrix_gower
+print(a)
