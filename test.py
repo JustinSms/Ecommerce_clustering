@@ -13,20 +13,20 @@ import pandas_analysis
 import sys
 import numpy
 import Gower
-#numpy.set_printoptions(threshold=sys.maxsize)
 
+#numpy.set_printoptions(threshold=sys.maxsize)
 
 data = Gower.data_matrix_gower
 print(data)
+
+#print(data)
+data_num_norm = normalization_file.data_num_norm_normfile
 #print(type(data))
 #plt.matshow(data)
 #plt.show()
 
-
-
 dbscan = DBSCAN()
-clustering = DBSCAN(eps=0.002, min_samples=2).fit(data)
+clustering = DBSCAN(eps=0.1, min_samples=7).fit(data)
 clusters = clustering.labels_
 
-
-#print(clusters)
+print(clusters)
