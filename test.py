@@ -17,8 +17,16 @@ import Gower
 
 
 data = Gower.data_matrix_gower
-#print(data)
+print(data)
+#print(type(data))
+#plt.matshow(data)
+#plt.show()
+
+
 
 dbscan = DBSCAN()
-clusters = dbscan.fit_predict(data)
-print(clusters)
+clustering = DBSCAN(eps=0.002, min_samples=2).fit(data)
+clusters = clustering.labels_
+
+
+#print(clusters)

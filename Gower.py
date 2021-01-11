@@ -3,6 +3,8 @@ import pandas as pd
 from sklearn.neighbors import DistanceMetric
 import pandas_analysis
 
+import gower
+
 data_real = pandas_analysis.data_real
 #print(data_real.head(5))
 
@@ -83,8 +85,6 @@ class Gower:
         #gower_top_equasion = sum(gower_top_equasion)
 
         gower_calc = sum(self.distance_list) / sum(self.weight_list)
-
-        #print(gower_calc,"gower own")
         return gower_calc
 
 
