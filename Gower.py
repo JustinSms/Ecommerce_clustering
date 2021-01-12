@@ -89,6 +89,18 @@ class Gower:
 gower_instance = Gower(data_real, ["metric","metric","metric","metric","metric","nominal"], [1,1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent","State"])
 
 distance_gower = gower_instance.distance_calculator()
+#print(distance_gower)
 
 data_matrix_gower = gower_instance.matrix_calculator()
 
+
+
+
+gower_test_numeric = Gower(data_real, ["metric","metric","metric","metric","metric"], [1,1,1,1,1], ["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent"])
+
+distance_gower_test_numeric = gower_test_numeric.distance_calculator()
+#print(distance_gower_test_numeric)
+
+#print(sum(distance_gower_test_numeric))
+
+distance_matrix = sum(distance_gower_test_numeric)

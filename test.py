@@ -13,20 +13,16 @@ import pandas_analysis
 import sys
 import numpy
 import Gower
+from sklearn.neighbors import NearestNeighbors
+
 
 #numpy.set_printoptions(threshold=sys.maxsize)
 
 data = Gower.data_matrix_gower
-print(data)
 
-#print(data)
-data_num_norm = normalization_file.data_num_norm_normfile
-#print(type(data))
-#plt.matshow(data)
-#plt.show()
+data_real = pandas_analysis.data_real
 
-dbscan = DBSCAN()
-clustering = DBSCAN(eps=0.1, min_samples=7).fit(data)
-clusters = clustering.labels_
 
-print(clusters)
+from scipy.spatial.distance import squareform, pdist
+
+print(pd.DataFrame(squareform(pdist(data_real[["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent"]]))))
