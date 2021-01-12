@@ -104,3 +104,4 @@ distance_gower_test_numeric = gower_test_numeric.distance_calculator()
 #print(sum(distance_gower_test_numeric))
 
 distance_matrix = sum(distance_gower_test_numeric)
+print(distance_matrix)

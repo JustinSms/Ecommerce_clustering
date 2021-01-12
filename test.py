@@ -14,15 +14,21 @@ import sys
 import numpy
 import Gower
 from sklearn.neighbors import NearestNeighbors
-
+from sklearn.cluster import SpectralClustering
+from sklearn.cluster import AffinityPropagation
 
 #numpy.set_printoptions(threshold=sys.maxsize)
+data_matrix = Gower.distance_matrix
 
-data = Gower.data_matrix_gower
+# SPECTRALCLUSTERING
+sc = SpectralClustering(5, affinity='precomputed', n_init=100,assign_labels='discretize')
+sc.fit_predict(data_matrix)
 
-data_real = pandas_analysis.data_real
+print(sc.labels_)
 
 
-from scipy.spatial.distance import squareform, pdist
 
-print(pd.DataFrame(squareform(pdist(data_real[["Avg. Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent"]]))))
+
+
+
+
